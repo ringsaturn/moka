@@ -5,13 +5,6 @@ import (
 	"os"
 )
 
-type Collector struct {
-	LAINDOMAIN           string
-	PodInstanceNo        string
-	PodInstanceName      string
-	PodInstanceNamespace string
-}
-
 var LainDomain string      // lain.example.com
 var PodInstanceName string // "foo.web.web"
 var PodInstanceNo string   // "1", "2"
