@@ -16,7 +16,8 @@ type MokaStatsd struct {
 }
 
 func NewMokaStatsd(statsdConfig *statsd.ClientConfig) (*MokaStatsd, error) {
-	mokaStatsd := &MokaStatsd{}
+
+	statsdConfig.Prefix = Prefix
 	statter, err := statsd.NewClientWithConfig(statsdConfig)
 	if err != nil {
 		log.Fatalf("could not create statsd client: %v", err)
@@ -30,6 +31,8 @@ func NewMokaStatsd(statsdConfig *statsd.ClientConfig) (*MokaStatsd, error) {
 		Tags:     map[string]string{},
 		Reporter: r,
 	}, 1*time.Second)
+
+	mokaStatsd := &MokaStatsd{}
 	mokaStatsd.Scope = scope
 	mokaStatsd.ScopeCloser = closer
 	return mokaStatsd, err
