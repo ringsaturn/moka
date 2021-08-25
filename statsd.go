@@ -17,7 +17,7 @@ type MokaStatsd struct {
 
 func NewMokaStatsd(statsdConfig *statsd.ClientConfig) (*MokaStatsd, error) {
 
-	statsdConfig.Prefix = Prefix
+	statsdConfig.Prefix = MokaPrefix
 	statter, err := statsd.NewClientWithConfig(statsdConfig)
 	if err != nil {
 		log.Fatalf("could not create statsd client: %v", err)
